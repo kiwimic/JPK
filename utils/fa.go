@@ -99,7 +99,7 @@ type FakturaWierszCtrl struct {
 	WartoscWierszyFaktur string `xml:"WartoscWierszyFaktur"`
 }
 
-func (t JPK_FA) createRowFaktura(i int) string {
+func (t JPK_FA) CreateRowFaktura(i int) string {
 	str := ""
 
 	strSlice := []string{
@@ -162,19 +162,66 @@ func (t JPK_FA) createRowFaktura(i int) string {
 	return str
 }
 
-func (t JPK_FA) createCSVFromRows(f func(i int) string, buforSize int, filename string) {
+func (t JPK_FA) CreateRowFakturaWiersz(i int) string {
+	str := ""
+
+	strSlice := []string{
+		t.FakturaWiersz[i].P_2B,
+		t.FakturaWiersz[i].P_7,
+		t.FakturaWiersz[i].P_8A,
+		t.FakturaWiersz[i].P_8B,
+		t.FakturaWiersz[i].P_9A,
+		t.FakturaWiersz[i].P_9B,
+		t.FakturaWiersz[i].P_10,
+		t.FakturaWiersz[i].P_11,
+		t.FakturaWiersz[i].P_11A,
+		t.FakturaWiersz[i].P_12}
+
+	joined := strings.Join(strSlice, "\";\"")
+	joined = "\"" + joined + "\""
+	str = str + joined + "\n"
+
+	return str
+}
+
+func (t JPK_FA) LiczbaFaktur() int {
+	return (len(t.Faktura))
+}
+
+func (t JPK_FA) LiczbaWierszyFaktur() int {
+	return (len(t.FakturaWiersz))
+}
+
+func (t JPK_FA) CreateCSVFromRowsFaktura(buforSize int, filename string) {
 	str := ""
 	if buforSize == 0 {
 		buforSize = 200
 	}
 	for i := range t.Faktura {
-		rowPaste := f(t.Faktura[i])
+		rowPaste := t.CreateRowFaktura(i)
 		str = str + rowPaste + "\n"
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
-			writeToCSV(str, filename)
+			WriteToCSV(str, filename)
 			str = ""
 		}
 	}
-	writeToCSV(str, filename)
+	WriteToCSV(str, filename)
+}
+
+func (t JPK_FA) CreateCSVFromRowsFakturaWiersz(buforSize int, filename string) {
+	str := ""
+	if buforSize == 0 {
+		buforSize = 200
+	}
+	for i := range t.FakturaWiersz {
+		rowPaste := t.CreateRowFakturaWiersz(i)
+		str = str + rowPaste + "\n"
+		if i%200 == 0 {
+			//fmt.Println("Faktura: ", i)
+			WriteToCSV(str, filename)
+			str = ""
+		}
+	}
+	WriteToCSV(str, filename)
 }
