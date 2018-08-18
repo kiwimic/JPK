@@ -36,6 +36,8 @@ var vatCmd = &cobra.Command{
 		fmt.Println("export dir: ", ExportDir)
 		SprzedazWierszName := ExportDir + "\\" + "SprzedazWiersz.txt"
 		ZakupWierszName := ExportDir + "\\" + "ZakupWiersz.txt"
+		SprzedazCtrlName := ExportDir + "\\" + "SprzedazCtrl.txt"
+		ZakupCtrlName := ExportDir + "\\" + "ZakupCtrl.txt"
 
 		xmlFile, err := os.Open(FilePath)
 		// if we os.Open returns an error then handle it
@@ -70,6 +72,9 @@ var vatCmd = &cobra.Command{
 		fmt.Println("Liczba wierszy sprzedaży to: ", test)
 		fmt.Println("Liczba wierszy zakupu to: ", len(jpk_vat.ZakupWiersz))
 		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.txt")
+
+		jpk_vat.CreateCSVSprzedazCtrl(SprzedazCtrlName)
+		jpk_vat.CreateCSVZakupCtrl(ZakupCtrlName)
 
 		fmt.Println("Start: ", st, "\nEnd: ", end)
 		fmt.Println("Wszystko trwało: ", time.Since(st))

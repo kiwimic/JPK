@@ -86,8 +86,8 @@ type ZakupWiersz struct {
 }
 
 type ZakupCtrl struct {
-	LiczbaWierszyZakupoow string `xml:"LiczbaWierszyZakupow"`
-	PodatekNaliczony      string `xml:"PodatekNaliczony"`
+	LiczbaWierszyZakupow string `xml:"LiczbaWierszyZakupow"`
+	PodatekNaliczony     string `xml:"PodatekNaliczony"`
 }
 
 func (t JPK_VAT) createRowSprzedazWiersz(i int) string {
@@ -214,6 +214,20 @@ func (t JPK_VAT) CreateCSVSprzedazCtrl(filename string) {
 	strSlice := []string{
 		t.SprzedazCtrl.LiczbaWierszySprzedazy,
 		t.SprzedazCtrl.PodatekNalezny}
+
+	joined := strings.Join(strSlice, "\";\"")
+	joined = "\"" + joined + "\""
+	str = str + joined + "\n"
+
+	WriteToCSV(str, filename)
+}
+
+func (t JPK_VAT) CreateCSVZakupCtrl(filename string) {
+	str := ""
+
+	strSlice := []string{
+		t.ZakupCtrl.LiczbaWierszyZakupow,
+		t.ZakupCtrl.PodatekNaliczony}
 
 	joined := strings.Join(strSlice, "\";\"")
 	joined = "\"" + joined + "\""
