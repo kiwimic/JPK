@@ -199,7 +199,7 @@ func (t JPK_FA) CreateCSVFromRowsFaktura(buforSize int, filename string) {
 	}
 	for i := range t.Faktura {
 		rowPaste := t.CreateRowFaktura(i)
-		str = str + rowPaste + "\n"
+		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
 			WriteToCSV(str, filename)
@@ -216,7 +216,7 @@ func (t JPK_FA) CreateCSVFromRowsFakturaWiersz(buforSize int, filename string) {
 	}
 	for i := range t.FakturaWiersz {
 		rowPaste := t.CreateRowFakturaWiersz(i)
-		str = str + rowPaste + "\n"
+		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
 			WriteToCSV(str, filename)

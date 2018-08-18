@@ -12,13 +12,13 @@ import (
 )
 
 func init() {
-	faCmd.PersistentFlags().String("file", "", "file jpk to read.")
-	faCmd.PersistentFlags().String("dir", "C:/jpk", "dir to export result tables")
+	vatCmd.PersistentFlags().String("file", "", "file jpk to read.")
+	vatCmd.PersistentFlags().String("dir", "C:/jpk", "dir to export result tables")
 }
 
-var faCmd = &cobra.Command{
-	Use:   "fa",
-	Short: "convert jpk_fa.xml to csv tables exported to dir you choose",
+var vatCmd = &cobra.Command{
+	Use:   "vat",
+	Short: "convert jpk_vat.xml to csv tables exported to dir you choose",
 	//Long: `A Fast and Flexible Static Site Generator built with
 	//              love by spf13 and friends in Go.
 	//              Complete documentation is available at http://hugo.spf13.com`,
@@ -34,8 +34,8 @@ var faCmd = &cobra.Command{
 		//ExportDir where you save files
 		ExportDir := cmd.Flag("dir").Value.String()
 		fmt.Println("export dir: ", ExportDir)
-		fakturaName := ExportDir + "\\" + "Faktura.txt"
-		fakturawierszName := ExportDir + "\\" + "FakturaWiersz.txt"
+		SprzedazWierszName := ExportDir + "\\" + "SprzedazWiersz.txt"
+		ZakupWierszName := ExportDir + "\\" + "ZakupWiersz.txt"
 
 		xmlFile, err := os.Open(FilePath)
 		// if we os.Open returns an error then handle it
@@ -49,27 +49,28 @@ var faCmd = &cobra.Command{
 		byteValue, _ := ioutil.ReadAll(xmlFile)
 		v2 := time.Now()
 		fmt.Println("Wczytano plik: ", v2)
-		var jpk_fa utils.JPK_FA
-		xml.Unmarshal(byteValue, &jpk_fa)
+		var jpk_vat utils.JPK_VAT
+		xml.Unmarshal(byteValue, &jpk_vat)
 		v3 := time.Now()
 		fmt.Println("Zakończono parsowanie: ", v3)
 		//str := createCSVFaktura(JPK_FA.Faktura)
-		jpk_fa.CreateCSVFromRowsFaktura(200, fakturaName)
-		fmt.Println("Stworzono CSV faktura: ", time.Now())
+		jpk_vat.CreateCSVFromRowsSprzedazWiersz(200, SprzedazWierszName)
+		fmt.Println("Stworzono CSV SprzedazWiersz: ", time.Now())
 		//exportCSV(csvFaktura, "JPK_FA_Faktura.txt")
 
-		fmt.Println("Zapisano CSV faktura: ", time.Now())
+		fmt.Println("Zapisano CSV SprzedazWiersz: ", time.Now())
 
-		jpk_fa.CreateCSVFromRowsFakturaWiersz(200, fakturawierszName)
+		jpk_vat.CreateCSVFromRowsZakupWiersz(200, ZakupWierszName)
 
-		fmt.Println("Stworzono CSV fakturaWiersz: ", time.Now())
-		test := len(jpk_fa.Faktura)
-		fmt.Println("Liczba faktur to: ", test)
-		fmt.Println("Liczba wierszy faktur to: ", len(jpk_fa.FakturaWiersz))
+		fmt.Println("Zapisano CSV ZakupWiersz: ", time.Now())
+		end := time.Now()
+
+		fmt.Println("Stworzono CSV ZakupWiersz: ", time.Now())
+		test := len(jpk_vat.SprzedazWiersz)
+		fmt.Println("Liczba wierszy sprzedaży to: ", test)
+		fmt.Println("Liczba wierszy zakupu to: ", len(jpk_vat.ZakupWiersz))
 		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.txt")
 
-		fmt.Println("Zapisano CSV fakturaWiersz: ", time.Now())
-		end := time.Now()
 		fmt.Println("Start: ", st, "\nEnd: ", end)
 		fmt.Println("Wszystko trwało: ", time.Since(st))
 
@@ -77,5 +78,5 @@ var faCmd = &cobra.Command{
 }
 
 func init() {
-	RootCmd.AddCommand(faCmd)
+	RootCmd.AddCommand(vatCmd)
 }
