@@ -6,7 +6,7 @@ import "strings"
 type JPK_FA struct {
 	Naglowek          Naglowek          `xml:"Naglowek"`
 	Faktura           []Faktura         `xml:"Faktura"`
-	FakturaCtrl       FakturaWierszCtrl `xml:"FakturaCtrl"`
+	FakturaCtrl       FakturaCtrl       `xml:"FakturaCtrl"`
 	FakturaWiersz     []FakturaWiersz   `xml:"FakturaWiersz"`
 	FakturaWierszCtrl FakturaWierszCtrl `xml:"FakturaWierszCtrl"`
 }
@@ -223,5 +223,53 @@ func (t JPK_FA) CreateCSVFromRowsFakturaWiersz(buforSize int, filename string) {
 			str = ""
 		}
 	}
+	WriteToCSV(str, filename)
+}
+
+func (t JPK_FA) CreateCSVFakturaCtrl(filename string) {
+	str := ""
+
+	strSlice := []string{
+		t.FakturaCtrl.LiczbaFaktur,
+		t.FakturaCtrl.WartoscFaktur}
+
+	joined := strings.Join(strSlice, "\";\"")
+	joined = "\"" + joined + "\""
+	str = str + joined + "\n"
+
+	WriteToCSV(str, filename)
+}
+
+func (t JPK_FA) CreateCSVFakturaWierszCtrl(filename string) {
+	str := ""
+
+	strSlice := []string{
+		t.FakturaWierszCtrl.LiczbaWierszyFaktur,
+		t.FakturaWierszCtrl.WartoscWierszyFaktur}
+
+	joined := strings.Join(strSlice, "\";\"")
+	joined = "\"" + joined + "\""
+	str = str + joined + "\n"
+
+	WriteToCSV(str, filename)
+}
+
+func (t JPK_FA) CreateCSVNaglowek(filename string) {
+	str := ""
+
+	strSlice := []string{
+		t.Naglowek.KodFormularza,
+		t.Naglowek.WariantFormularza,
+		t.Naglowek.CelZlozenia,
+		t.Naglowek.DataWytworzeniaJPK,
+		t.Naglowek.DataOd,
+		t.Naglowek.DataDo,
+		t.Naglowek.DomyslnyKodWaluty,
+		t.Naglowek.KodUrzedu}
+
+	joined := strings.Join(strSlice, "\";\"")
+	joined = "\"" + joined + "\""
+	str = str + joined + "\n"
+
 	WriteToCSV(str, filename)
 }

@@ -36,6 +36,9 @@ var faCmd = &cobra.Command{
 		fmt.Println("export dir: ", ExportDir)
 		fakturaName := ExportDir + "\\" + "Faktura.txt"
 		fakturawierszName := ExportDir + "\\" + "FakturaWiersz.txt"
+		fakturaCtrlName := ExportDir + "\\" + "FakturaCtrl.txt"
+		fakturaWierszCtrlName := ExportDir + "\\" + "FakturaWierszCtrl.txt"
+		NaglowekName := ExportDir + "\\" + "Naglowek.txt"
 
 		xmlFile, err := os.Open(FilePath)
 		// if we os.Open returns an error then handle it
@@ -63,12 +66,17 @@ var faCmd = &cobra.Command{
 		jpk_fa.CreateCSVFromRowsFakturaWiersz(200, fakturawierszName)
 
 		fmt.Println("Stworzono CSV fakturaWiersz: ", time.Now())
+		fmt.Println("Zapisano CSV fakturaWiersz: ", time.Now())
 		test := len(jpk_fa.Faktura)
 		fmt.Println("Liczba faktur to: ", test)
 		fmt.Println("Liczba wierszy faktur to: ", len(jpk_fa.FakturaWiersz))
 		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.txt")
 
-		fmt.Println("Zapisano CSV fakturaWiersz: ", time.Now())
+		jpk_fa.CreateCSVFakturaCtrl(fakturaCtrlName)
+		jpk_fa.CreateCSVFakturaWierszCtrl(fakturaWierszCtrlName)
+		jpk_fa.CreateCSVNaglowek(NaglowekName)
+		fmt.Println("Stworzono sumy kontrolne, oraz nagłowek", time.Now())
+
 		end := time.Now()
 		fmt.Println("Start: ", st, "\nEnd: ", end)
 		fmt.Println("Wszystko trwało: ", time.Since(st))
