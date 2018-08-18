@@ -207,3 +207,17 @@ func (t JPK_VAT) CreateCSVFromRowsZakupWiersz(buforSize int, filename string) {
 	}
 	WriteToCSV(str, filename)
 }
+
+func (t JPK_VAT) CreateCSVSprzedazCtrl(filename string) {
+	str := ""
+
+	strSlice := []string{
+		t.SprzedazCtrl.LiczbaWierszySprzedazy,
+		t.SprzedazCtrl.PodatekNalezny}
+
+	joined := strings.Join(strSlice, "\";\"")
+	joined = "\"" + joined + "\""
+	str = str + joined + "\n"
+
+	WriteToCSV(str, filename)
+}
