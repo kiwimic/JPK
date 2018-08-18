@@ -235,3 +235,23 @@ func (t JPK_VAT) CreateCSVZakupCtrl(filename string) {
 
 	WriteToCSV(str, filename)
 }
+
+func (t JPK_VAT) CreateCSVNaglowek(filename string) {
+	str := ""
+
+	strSlice := []string{
+		t.Naglowek.KodFormularza,
+		t.Naglowek.WariantFormularza,
+		t.Naglowek.CelZlozenia,
+		t.Naglowek.DataWytworzeniaJPK,
+		t.Naglowek.DataOd,
+		t.Naglowek.DataDo,
+		t.Naglowek.DomyslnyKodWaluty,
+		t.Naglowek.KodUrzedu}
+
+	joined := strings.Join(strSlice, "\";\"")
+	joined = "\"" + joined + "\""
+	str = str + joined + "\n"
+
+	WriteToCSV(str, filename)
+}

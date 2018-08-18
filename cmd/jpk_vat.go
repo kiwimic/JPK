@@ -38,6 +38,7 @@ var vatCmd = &cobra.Command{
 		ZakupWierszName := ExportDir + "\\" + "ZakupWiersz.txt"
 		SprzedazCtrlName := ExportDir + "\\" + "SprzedazCtrl.txt"
 		ZakupCtrlName := ExportDir + "\\" + "ZakupCtrl.txt"
+		NaglowekName := ExportDir + "\\" + "Naglowek.txt"
 
 		xmlFile, err := os.Open(FilePath)
 		// if we os.Open returns an error then handle it
@@ -75,6 +76,8 @@ var vatCmd = &cobra.Command{
 
 		jpk_vat.CreateCSVSprzedazCtrl(SprzedazCtrlName)
 		jpk_vat.CreateCSVZakupCtrl(ZakupCtrlName)
+		jpk_vat.CreateCSVNaglowek(NaglowekName)
+		fmt.Println("Stworzono sumy kontrolne, oraz nagłowek", time.Now())
 
 		fmt.Println("Start: ", st, "\nEnd: ", end)
 		fmt.Println("Wszystko trwało: ", time.Since(st))
