@@ -155,8 +155,7 @@ func (t JPK_FA) CreateRowFaktura(i int) string {
 		t.Faktura[i].ZALZaplata,
 		t.Faktura[i].ZALPodatek}
 
-	joined := strings.Join(strSlice, "\";\"")
-	joined = "\"" + joined + "\""
+	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
 	return str
@@ -177,8 +176,7 @@ func (t JPK_FA) CreateRowFakturaWiersz(i int) string {
 		t.FakturaWiersz[i].P_11A,
 		t.FakturaWiersz[i].P_12}
 
-	joined := strings.Join(strSlice, "\";\"")
-	joined = "\"" + joined + "\""
+	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
 	return str
@@ -233,8 +231,7 @@ func (t JPK_FA) CreateCSVFakturaCtrl(filename string) {
 		t.FakturaCtrl.LiczbaFaktur,
 		t.FakturaCtrl.WartoscFaktur}
 
-	joined := strings.Join(strSlice, "\";\"")
-	joined = "\"" + joined + "\""
+	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
 	WriteToCSV(str, filename)
@@ -247,8 +244,7 @@ func (t JPK_FA) CreateCSVFakturaWierszCtrl(filename string) {
 		t.FakturaWierszCtrl.LiczbaWierszyFaktur,
 		t.FakturaWierszCtrl.WartoscWierszyFaktur}
 
-	joined := strings.Join(strSlice, "\";\"")
-	joined = "\"" + joined + "\""
+	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
 	WriteToCSV(str, filename)
@@ -267,8 +263,7 @@ func (t JPK_FA) CreateCSVNaglowek(filename string) {
 		t.Naglowek.DomyslnyKodWaluty,
 		t.Naglowek.KodUrzedu}
 
-	joined := strings.Join(strSlice, "\";\"")
-	joined = "\"" + joined + "\""
+	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
 	WriteToCSV(str, filename)
