@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func WriteToCSV(st, filename string) {
@@ -13,4 +14,15 @@ func WriteToCSV(st, filename string) {
 	fmt.Fprintf(f, "%s", st)
 
 	f.Close()
+}
+
+func RemoveStringFromSliceOfString(value []string, pattern, replacement string, n int) []string {
+	N := len(value)
+	ret := make([]string, N)
+	temp := ""
+	for i := 0; i < N; i++ {
+		temp = value[i]
+		ret[i] = strings.Replace(temp, pattern, replacement, n)
+	}
+	return ret
 }

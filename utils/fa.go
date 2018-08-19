@@ -155,6 +155,7 @@ func (t JPK_FA) CreateRowFaktura(i int) string {
 		t.Faktura[i].ZALZaplata,
 		t.Faktura[i].ZALPodatek}
 
+	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
@@ -176,6 +177,7 @@ func (t JPK_FA) CreateRowFakturaWiersz(i int) string {
 		t.FakturaWiersz[i].P_11A,
 		t.FakturaWiersz[i].P_12}
 
+	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
@@ -231,6 +233,7 @@ func (t JPK_FA) CreateCSVFakturaCtrl(filename string) {
 		t.FakturaCtrl.LiczbaFaktur,
 		t.FakturaCtrl.WartoscFaktur}
 
+	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
@@ -244,6 +247,7 @@ func (t JPK_FA) CreateCSVFakturaWierszCtrl(filename string) {
 		t.FakturaWierszCtrl.LiczbaWierszyFaktur,
 		t.FakturaWierszCtrl.WartoscWierszyFaktur}
 
+	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
@@ -262,7 +266,7 @@ func (t JPK_FA) CreateCSVNaglowek(filename string) {
 		t.Naglowek.DataDo,
 		t.Naglowek.DomyslnyKodWaluty,
 		t.Naglowek.KodUrzedu}
-
+	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
 	str = str + joined + "\n"
 
