@@ -5,7 +5,6 @@ import "strings"
 // JPK_VAT cały nosiciel JPK to do niego wkładamy zprasowany plik
 type JPK_WB struct {
 	Naglowek      NaglowekWB     `xml:"Naglowek"`
-	Podmiot1      PodmiotWB      `xml:"Podmiot1"`
 	NumerRachunku string         `xml:"NumerRachunku"`
 	Salda         Salda          `xml:"Salda"`
 	WyciagWiersz  []WyciagWiersz `xml:"WyciagWiersz"`

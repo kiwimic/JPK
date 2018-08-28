@@ -67,9 +67,6 @@ var wbCmd = &cobra.Command{
 		fmt.Println("Zapisano CSV NumerRachunku: ", time.Now())
 		jpk_wb.CreateCSVNaglowek(NaglowekName)
 		fmt.Println("Zapisano CSV Naglowek: ", time.Now())
-		fmt.Println("Liczba faktur to: ", test)
-		fmt.Println("Liczba wierszy faktur to: ", len(jpk_fa.FakturaWiersz))
-		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.txt")
 		jpk_wb.CreateCSVWyciagCtrl(WyciagCtrlName)
 		fmt.Println("Stworzono sumy kontrolne", time.Now())
 
