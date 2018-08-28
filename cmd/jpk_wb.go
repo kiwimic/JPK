@@ -12,8 +12,8 @@ import (
 )
 
 func init() {
-	faCmd.PersistentFlags().String("file", "", "file jpk to read.")
-	faCmd.PersistentFlags().String("dir", "C:/jpk", "dir to export result tables")
+	wbCmd.PersistentFlags().String("file", "", "file jpk to read.")
+	wbCmd.PersistentFlags().String("dir", "C:/jpk", "dir to export result tables")
 }
 
 var wbCmd = &cobra.Command{
