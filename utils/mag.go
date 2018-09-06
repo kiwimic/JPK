@@ -6,10 +6,10 @@ import "strings"
 type JPK_MAG struct {
 	Naglowek NaglowekMAG `xml:"Naglowek"`
 	Magazyn  string      `xml:"Magazyn"`
-	PZ       []PZ        `xml:"PZ"`
-	WZ       []WZ        `xml:"WZ"`
-	RW       []RW        `xml:"RW"`
-	MM       []MM        `xml:"MM"`
+	PZ       PZ          `xml:"PZ"`
+	WZ       WZ          `xml:"WZ"`
+	RW       RW          `xml:"RW"`
+	MM       MM          `xml:"MM"`
 }
 
 type NaglowekMAG struct {
@@ -86,9 +86,9 @@ type WZCtrl struct {
 }
 
 type RW struct {
-	RWWartosc []string `xml:"RWWartosc"`
-	RWWiersz  []string `xml:"RWWiersz"`
-	RWCtrl    string   `xml:"RWCtrl"`
+	RWWartosc []RWWartosc `xml:"RWWartosc"`
+	RWWiersz  []RWWiersz  `xml:"RWWiersz"`
+	RWCtrl    RWCtrl      `xml:"RWCtrl"`
 }
 
 type RWWartosc struct {
@@ -116,9 +116,9 @@ type RWCtrl struct {
 }
 
 type MM struct {
-	MMWartosc []string `xml:"MMWartosc"`
-	MMWiersz  []string `xml:"MMWiersz"`
-	MMCtrl    string   `xml:"MMCtrl"`
+	MMWartosc []MMWartosc `xml:"MMWartosc"`
+	MMWiersz  []MMWiersz  `xml:"MMWiersz"`
+	MMCtrl    MMCtrl      `xml:"MMCtrl"`
 }
 
 type MMWartosc struct {
@@ -150,13 +150,13 @@ func (t JPK_MAG) createRowPZWartosc(i int) string {
 	str := ""
 
 	strSlice := []string{
-		t.PZ[i].PZWartosc[i].NumerPZ,
-		t.PZ[i].PZWartosc[i].DataPZ,
-		t.PZ[i].PZWartosc[i].WartoscPZ,
-		t.PZ[i].PZWartosc[i].DataOtrzymaniaPZ,
-		t.PZ[i].PZWartosc[i].Dostawca,
-		t.PZ[i].PZWartosc[i].NumerFaPZ,
-		t.PZ[i].PZWartosc[i].DataFaPZ}
+		t.PZ.PZWartosc[i].NumerPZ,
+		t.PZ.PZWartosc[i].DataPZ,
+		t.PZ.PZWartosc[i].WartoscPZ,
+		t.PZ.PZWartosc[i].DataOtrzymaniaPZ,
+		t.PZ.PZWartosc[i].Dostawca,
+		t.PZ.PZWartosc[i].NumerFaPZ,
+		t.PZ.PZWartosc[i].DataFaPZ}
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
@@ -169,13 +169,13 @@ func (t JPK_MAG) createRowWZWartosc(i int) string {
 	str := ""
 
 	strSlice := []string{
-		t.WZ[i].WZWartosc[i].NumerWZ,
-		t.WZ[i].WZWartosc[i].DataWZ,
-		t.WZ[i].WZWartosc[i].WartoscWZ,
-		t.WZ[i].WZWartosc[i].DataWydaniaWZ,
-		t.WZ[i].WZWartosc[i].OdbiorcaWZ,
-		t.WZ[i].WZWartosc[i].NumerFaWZ,
-		t.WZ[i].WZWartosc[i].DataFaWZ,
+		t.WZ.WZWartosc[i].NumerWZ,
+		t.WZ.WZWartosc[i].DataWZ,
+		t.WZ.WZWartosc[i].WartoscWZ,
+		t.WZ.WZWartosc[i].DataWydaniaWZ,
+		t.WZ.WZWartosc[i].OdbiorcaWZ,
+		t.WZ.WZWartosc[i].NumerFaWZ,
+		t.WZ.WZWartosc[i].DataFaWZ,
 	}
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
@@ -189,12 +189,12 @@ func (t JPK_MAG) createRowRWWartosc(i int) string {
 	str := ""
 
 	strSlice := []string{
-		t.RW[i].RWWartosc[i].NumerRW,
-		t.RW[i].RWWartosc[i].DataRW,
-		t.RW[i].RWWartosc[i].WartoscRW,
-		t.RW[i].RWWartosc[i].DataWydaniaRW,
-		t.RW[i].RWWartosc[i].SkadRW,
-		t.RW[i].RWWartosc[i].DokadRW,
+		t.RW.RWWartosc[i].NumerRW,
+		t.RW.RWWartosc[i].DataRW,
+		t.RW.RWWartosc[i].WartoscRW,
+		t.RW.RWWartosc[i].DataWydaniaRW,
+		t.RW.RWWartosc[i].SkadRW,
+		t.RW.RWWartosc[i].DokadRW,
 	}
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
@@ -208,12 +208,12 @@ func (t JPK_MAG) createRowMMWartosc(i int) string {
 	str := ""
 
 	strSlice := []string{
-		t.MM[i].MMWartosc[i].NumerMM,
-		t.MM[i].MMWartosc[i].DataMM,
-		t.MM[i].MMWartosc[i].WartoscMM,
-		t.MM[i].MMWartosc[i].DataWydaniaMM,
-		t.MM[i].MMWartosc[i].SkadMM,
-		t.MM[i].MMWartosc[i].DokadMM,
+		t.MM.MMWartosc[i].NumerMM,
+		t.MM.MMWartosc[i].DataMM,
+		t.MM.MMWartosc[i].WartoscMM,
+		t.MM.MMWartosc[i].DataWydaniaMM,
+		t.MM.MMWartosc[i].SkadMM,
+		t.MM.MMWartosc[i].DokadMM,
 	}
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
@@ -227,13 +227,13 @@ func (t JPK_MAG) createRowPZWiersz(i int) string {
 	str := ""
 
 	strSlice := []string{
-		t.PZ[i].PZWiersz[i].Numer2PZ,
-		t.PZ[i].PZWiersz[i].KodTowaruPZ,
-		t.PZ[i].PZWiersz[i].NazwaTowaruPZ,
-		t.PZ[i].PZWiersz[i].IloscPrzyjetaPZ,
-		t.PZ[i].PZWiersz[i].JednostkaMiaryPZ,
-		t.PZ[i].PZWiersz[i].CenaJednPZ,
-		t.PZ[i].PZWiersz[i].WartoscPozycjiPZ}
+		t.PZ.PZWiersz[i].Numer2PZ,
+		t.PZ.PZWiersz[i].KodTowaruPZ,
+		t.PZ.PZWiersz[i].NazwaTowaruPZ,
+		t.PZ.PZWiersz[i].IloscPrzyjetaPZ,
+		t.PZ.PZWiersz[i].JednostkaMiaryPZ,
+		t.PZ.PZWiersz[i].CenaJednPZ,
+		t.PZ.PZWiersz[i].WartoscPozycjiPZ}
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
@@ -246,13 +246,13 @@ func (t JPK_MAG) createRowWZWiersz(i int) string {
 	str := ""
 
 	strSlice := []string{
-		t.WZ[i].WZWiersz[i].Numer2WZ,
-		t.WZ[i].WZWiersz[i].KodTowaruWZ,
-		t.WZ[i].WZWiersz[i].NazwaTowaruWZ,
-		t.WZ[i].WZWiersz[i].IloscWydanaWZ,
-		t.WZ[i].WZWiersz[i].JednostkaMiaryWZ,
-		t.WZ[i].WZWiersz[i].CenaJednWZ,
-		t.WZ[i].WZWiersz[i].WartoscPozycjiWZ,
+		t.WZ.WZWiersz[i].Numer2WZ,
+		t.WZ.WZWiersz[i].KodTowaruWZ,
+		t.WZ.WZWiersz[i].NazwaTowaruWZ,
+		t.WZ.WZWiersz[i].IloscWydanaWZ,
+		t.WZ.WZWiersz[i].JednostkaMiaryWZ,
+		t.WZ.WZWiersz[i].CenaJednWZ,
+		t.WZ.WZWiersz[i].WartoscPozycjiWZ,
 	}
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
@@ -266,13 +266,13 @@ func (t JPK_MAG) createRowRWWiersz(i int) string {
 	str := ""
 
 	strSlice := []string{
-		t.RW[i].RWWartosc[i].Numer2RW,
-		t.RW[i].RWWartosc[i].KodTowaruRW,
-		t.RW[i].RWWartosc[i].NazwaTowaruRW,
-		t.RW[i].RWWartosc[i].IloscWydanaRW,
-		t.RW[i].RWWartosc[i].JednostkaMiaryRW,
-		t.RW[i].RWWartosc[i].CenaJednRW,
-		t.RW[i].RWWartosc[i].WartoscPozycjiRW}
+		t.RW.RWWiersz[i].Numer2RW,
+		t.RW.RWWiersz[i].KodTowaruRW,
+		t.RW.RWWiersz[i].NazwaTowaruRW,
+		t.RW.RWWiersz[i].IloscWydanaRW,
+		t.RW.RWWiersz[i].JednostkaMiaryRW,
+		t.RW.RWWiersz[i].CenaJednRW,
+		t.RW.RWWiersz[i].WartoscPozycjiRW}
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
@@ -285,13 +285,13 @@ func (t JPK_MAG) createRowMMWiersz(i int) string {
 	str := ""
 
 	strSlice := []string{
-		t.MM[i].MMWartosc[i].Numer2MM,
-		t.MM[i].MMWartosc[i].KodTowaruMM,
-		t.MM[i].MMWartosc[i].NazwaTowaruMM,
-		t.MM[i].MMWartosc[i].IloscWydanaMM,
-		t.MM[i].MMWartosc[i].JednostkaMiaryMM,
-		t.MM[i].MMWartosc[i].CenaJednMM,
-		t.MM[i].MMWartosc[i].WartoscPozycjiMM,
+		t.MM.MMWiersz[i].Numer2MM,
+		t.MM.MMWiersz[i].KodTowaruMM,
+		t.MM.MMWiersz[i].NazwaTowaruMM,
+		t.MM.MMWiersz[i].IloscWydanaMM,
+		t.MM.MMWiersz[i].JednostkaMiaryMM,
+		t.MM.MMWiersz[i].CenaJednMM,
+		t.MM.MMWiersz[i].WartoscPozycjiMM,
 	}
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
@@ -306,7 +306,7 @@ func (t JPK_MAG) CreateCSVFromRowsWZWartosc(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
-	for i := range t.WyciagWiersz {
+	for i := range t.WZ.WZWartosc {
 		rowPaste := t.createRowWZWartosc(i)
 		str = str + rowPaste
 		if i%200 == 0 {
@@ -323,7 +323,7 @@ func (t JPK_MAG) CreateCSVFromRowsWZWiersz(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
-	for i := range t.WyciagWiersz {
+	for i := range t.WZ.WZWiersz {
 		rowPaste := t.createRowWZWiersz(i)
 		str = str + rowPaste
 		if i%200 == 0 {
@@ -340,7 +340,7 @@ func (t JPK_MAG) CreateCSVFromRowsPZWartosc(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
-	for i := range t.WyciagWiersz {
+	for i := range t.PZ.PZWartosc {
 		rowPaste := t.createRowPZWartosc(i)
 		str = str + rowPaste
 		if i%200 == 0 {
@@ -357,7 +357,7 @@ func (t JPK_MAG) CreateCSVFromRowsPZWiersz(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
-	for i := range t.WyciagWiersz {
+	for i := range t.PZ.PZWiersz {
 		rowPaste := t.createRowPZWiersz(i)
 		str = str + rowPaste
 		if i%200 == 0 {
@@ -374,7 +374,7 @@ func (t JPK_MAG) CreateCSVFromRowsRWWartosc(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
-	for i := range t.WyciagWiersz {
+	for i := range t.RW.RWWartosc {
 		rowPaste := t.createRowRWWartosc(i)
 		str = str + rowPaste
 		if i%200 == 0 {
@@ -391,7 +391,7 @@ func (t JPK_MAG) CreateCSVFromRowsRWWiersz(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
-	for i := range t.WyciagWiersz {
+	for i := range t.RW.RWWiersz {
 		rowPaste := t.createRowRWWiersz(i)
 		str = str + rowPaste
 		if i%200 == 0 {
@@ -408,7 +408,7 @@ func (t JPK_MAG) CreateCSVFromRowsMMWartosc(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
-	for i := range t.WyciagWiersz {
+	for i := range t.MM.MMWartosc {
 		rowPaste := t.createRowMMWartosc(i)
 		str = str + rowPaste
 		if i%200 == 0 {
@@ -425,7 +425,7 @@ func (t JPK_MAG) CreateCSVFromRowsMMWiersz(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
-	for i := range t.WyciagWiersz {
+	for i := range t.MM.MMWiersz {
 		rowPaste := t.createRowMMWiersz(i)
 		str = str + rowPaste
 		if i%200 == 0 {
@@ -511,4 +511,5 @@ func (t JPK_MAG) CreateCSVNaglowek(filename string) {
 	str = str + joined + "\n"
 
 	WriteToCSV(str, filename)
+
 }

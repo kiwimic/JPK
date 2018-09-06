@@ -197,8 +197,68 @@ func (t JPK_FA) CreateCSVFromRowsFaktura(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
+
+	colNamesToBind := []string{"P_1",
+		"P_2A",
+		"P_3A",
+		"P_3B",
+		"P_3C",
+		"P_3D",
+		"P_4A",
+		"P_4B",
+		"P_5A",
+		"P_5B",
+		"P_6",
+		"P_13_1",
+		"P_14_1",
+		"P_13_2",
+		"P_14_2",
+		"P_13_3",
+		"P_14_3",
+		"P_13_4",
+		"P_14_4",
+		"P_13_5",
+		"P_14_5",
+		"P_13_6",
+		"P_13_7",
+		"P_15",
+		"P_16",
+		"P_17",
+		"P_18",
+		"P_19",
+		"P_19A",
+		"P_19B",
+		"P_19C",
+		"P_20",
+		"P_20A",
+		"P_20B",
+		"P_21",
+		"P_21A",
+		"P_21B",
+		"P_21C",
+		"P_22A",
+		"P_22B",
+		"P_22C",
+		"P_23",
+		"P_106E_2",
+		"P_106E_3",
+		"P_106E_3A",
+		"RodzajFaktury",
+		"PrzyczynaKorekty",
+		"NrFaKorygowanej",
+		"OkresFaKorygowanej",
+		"ZALZaplata",
+		"ZALPodatek"}
+
+	colNames := strings.Join(colNamesToBind, ";")
+
 	for i := range t.Faktura {
 		rowPaste := t.CreateRowFaktura(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
+
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -214,8 +274,25 @@ func (t JPK_FA) CreateCSVFromRowsFakturaWiersz(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
+	colNamesToBind := []string{"P_2B",
+		"P_7",
+		"P_8A",
+		"P_8B",
+		"P_9A",
+		"P_9B",
+		"P_10",
+		"P_11",
+		"P_11A",
+		"P_12"}
+
+	colNames := strings.Join(colNamesToBind, ";")
+
 	for i := range t.FakturaWiersz {
 		rowPaste := t.CreateRowFakturaWiersz(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -235,7 +312,8 @@ func (t JPK_FA) CreateCSVFakturaCtrl(filename string) {
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	colNames := "LiczbaFaktur;WartoscFaktur\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -249,7 +327,9 @@ func (t JPK_FA) CreateCSVFakturaWierszCtrl(filename string) {
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+
+	colNames := "LiczbaWierszyFaktur;WartoscWierszyFaktur\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -268,7 +348,8 @@ func (t JPK_FA) CreateCSVNaglowek(filename string) {
 		t.Naglowek.KodUrzedu}
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	colNames := "KodFormularza;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;DomyslnyKodWaluty;KodUrzedu\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }

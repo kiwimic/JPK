@@ -94,8 +94,9 @@ var magCmd = &cobra.Command{
 		v6 := time.Now()
 		fmt.Println("Zakończono zapisywanie sum kontrolnych i nagłowka", v6)
 
+		end := time.Now()
 		fmt.Println("Start: ", st, "\nEnd: ", end)
-		fmt.Println("Wszystko trwało: ", time.Since(st))
+		fmt.Println("Wszystko trwalo: ", time.Since(st))
 
 	},
 }
