@@ -88,8 +88,15 @@ func (t JPK_WB) CreateCSVFromRowsWyciagWiersz(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
+
+	colNames := "NumerWiersza;DataOperacji;NazwaPodmiotu;OpisOperacji;KwotaOperacji;SaldoOperacji;\n"
 	for i := range t.WyciagWiersz {
 		rowPaste := t.createRowWyciagWiersz(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
+
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -108,9 +115,10 @@ func (t JPK_WB) CreateCSVWyciagCtrl(filename string) {
 		t.WyciagCtrl.SumaObciazen,
 		t.WyciagCtrl.SumaUznan}
 
+	colNames := "LiczbaWierszy;SumaObciazen;SumaUznan\n"
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -122,9 +130,10 @@ func (t JPK_WB) CreateCSVSalda(filename string) {
 		t.Salda.SaldoPoczatkowe,
 		t.Salda.SaldoKoncowe}
 
+	colNames := "SaldoPoczatkowe;SaldoKoncowe\n"
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -136,7 +145,7 @@ func (t JPK_WB) CreateCSVNumerRachunku(filename string) {
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	str = str + "NumerRachunku\n" + joined + "\n"
 
 	WriteToCSV(str, filename)
 
@@ -157,7 +166,8 @@ func (t JPK_WB) CreateCSVNaglowek(filename string) {
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	colNames := "KodFormularza;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;DomyslnyKodWaluty;KodUrzedu\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
