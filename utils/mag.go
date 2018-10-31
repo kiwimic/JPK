@@ -356,9 +356,14 @@ func (t JPK_MAG) CreateCSVFromRowsPZWartosc(buforSize int, filename string) {
 		buforSize = 200
 	}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "NumerPZ;WartoscPZ;DataOtrzymaniaPZ;Dostawca;NumerFaPZ;DataFaPZ\n"
 	for i := range t.PZ.PZWartosc {
 		rowPaste := t.createRowPZWartosc(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
+
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -375,9 +380,13 @@ func (t JPK_MAG) CreateCSVFromRowsPZWiersz(buforSize int, filename string) {
 		buforSize = 200
 	}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "Numer2PZ;KodTowaruPZ;NazwaTowaruPZ;IloscPrzyjetaPZ;JednostkaMiaryPZ;CenaJednPZ;WartoscPozycjiPZ\n"
 	for i := range t.PZ.PZWiersz {
 		rowPaste := t.createRowPZWiersz(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -394,9 +403,13 @@ func (t JPK_MAG) CreateCSVFromRowsRWWartosc(buforSize int, filename string) {
 		buforSize = 200
 	}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "NumerRW;DataRW;WartoscRW;DataWydaniaRW;SkadRW;DokadRW\n"
 	for i := range t.RW.RWWartosc {
 		rowPaste := t.createRowRWWartosc(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -413,9 +426,14 @@ func (t JPK_MAG) CreateCSVFromRowsRWWiersz(buforSize int, filename string) {
 		buforSize = 200
 	}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "Numer2RW;KodTowaruRW;NazwaTowaruRW;IloscWydanaRW;JednostkaMiaryRW;CenaJednRW;WartoscPozycjiRW\n"
 	for i := range t.RW.RWWiersz {
 		rowPaste := t.createRowRWWiersz(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
+
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -432,9 +450,14 @@ func (t JPK_MAG) CreateCSVFromRowsMMWartosc(buforSize int, filename string) {
 		buforSize = 200
 	}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "NumerMM;DataMM;WartoscMM;DataWydaniaMM;SkadMM;DokadMM\n"
 	for i := range t.MM.MMWartosc {
 		rowPaste := t.createRowMMWartosc(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
+
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -451,9 +474,14 @@ func (t JPK_MAG) CreateCSVFromRowsMMWiersz(buforSize int, filename string) {
 		buforSize = 200
 	}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "Numer2MM;KodTowaruMM;NazwaTowaruMM;IloscWydanaMM;JednostkaMiaryMM;CenaJednMM;WartoscPozycjiMM\n"
 	for i := range t.MM.MMWiersz {
 		rowPaste := t.createRowMMWiersz(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
+
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -471,10 +499,10 @@ func (t JPK_MAG) CreateCSVPZCtrl(filename string) {
 		t.PZ.PZCtrl.LiczbaPZ,
 		t.PZ.PZCtrl.SumaPZ}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "LiczbaPZ;SumaPZ\n"
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -486,10 +514,10 @@ func (t JPK_MAG) CreateCSVWZCtrl(filename string) {
 		t.WZ.WZCtrl.LiczbaWZ,
 		t.WZ.WZCtrl.SumaWZ}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "LiczbaWZ;SumaWZ\n"
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -501,10 +529,10 @@ func (t JPK_MAG) CreateCSVRWCtrl(filename string) {
 		t.RW.RWCtrl.LiczbaRW,
 		t.RW.RWCtrl.SumaRW}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "LiczbaRW;SumaRW\n"
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -516,10 +544,10 @@ func (t JPK_MAG) CreateCSVMMCtrl(filename string) {
 		t.MM.MMCtrl.LiczbaMM,
 		t.MM.MMCtrl.SumaMM}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "LiczbaMM;SumaMM\n"
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -537,10 +565,11 @@ func (t JPK_MAG) CreateCSVNaglowek(filename string) {
 		t.Naglowek.DomyslnyKodWaluty,
 		t.Naglowek.KodUrzedu}
 
-	//colNames := "NumerWZ;DataWZ;WartoscWZ;DataWydaniaWZ;OdbiorcaWZ;NumerFaWZ;DataFaWZ\n"
+	colNames := "KodFormularza;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;DomyslnyKodWaluty;KodUrzedu\n"
+
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 
