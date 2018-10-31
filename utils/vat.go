@@ -179,8 +179,53 @@ func (t JPK_VAT) CreateCSVFromRowsSprzedazWiersz(buforSize int, filename string)
 	if buforSize == 0 {
 		buforSize = 200
 	}
+
+	colNamesToBind := []string{"LpSprzedazy",
+		"NrKontrahenta",
+		"NazwaKontrahenta",
+		"AdresKontrahenta",
+		"DowodSprzedazy",
+		"DataWystawienia",
+		"DataSprzedazy",
+		"K_10",
+		"K_11",
+		"K_12",
+		"K_13",
+		"K_14",
+		"K_15",
+		"K_16",
+		"K_17",
+		"K_18",
+		"K_19",
+		"K_20",
+		"K_21",
+		"K_22",
+		"K_23",
+		"K_24",
+		"K_25",
+		"K_26",
+		"K_27",
+		"K_28",
+		"K_29",
+		"K_30",
+		"K_31",
+		"K_32",
+		"K_33",
+		"K_34",
+		"K_35",
+		"K_36",
+		"K_37",
+		"K_38",
+		"K_39"}
+
+	colNames := strings.Join(colNamesToBind, ";")
+
 	for i := range t.SprzedazWiersz {
 		rowPaste := t.createRowSprzedazWiersz(i)
+
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -196,8 +241,31 @@ func (t JPK_VAT) CreateCSVFromRowsZakupWiersz(buforSize int, filename string) {
 	if buforSize == 0 {
 		buforSize = 200
 	}
+
+	colNamesToBind := []string{"LpZakupu",
+		"NrDostawcy",
+		"NazwaDostawcy",
+		"AdresDostawcy",
+		"DowodZakupu",
+		"DataZakupu",
+		"DataWplywu",
+		"K_43",
+		"K_44",
+		"K_45",
+		"K_46",
+		"K_47",
+		"K_48",
+		"K_49",
+		"K_50"}
+
+	colNames := strings.Join(colNamesToBind, ";")
+
 	for i := range t.ZakupWiersz {
 		rowPaste := t.createRowZakupWiersz(i)
+		if i == 0 {
+			str = str + colNames + "\n"
+		}
+
 		str = str + rowPaste
 		if i%200 == 0 {
 			//fmt.Println("Faktura: ", i)
@@ -217,7 +285,9 @@ func (t JPK_VAT) CreateCSVSprzedazCtrl(filename string) {
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+
+	colNames := "LiczbaWierszySprzedazy;PodatekNalezny\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -231,7 +301,8 @@ func (t JPK_VAT) CreateCSVZakupCtrl(filename string) {
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	colNames := "LiczbaWierszyZakupow;PodatekNaliczony\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
@@ -251,7 +322,8 @@ func (t JPK_VAT) CreateCSVNaglowek(filename string) {
 
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
-	str = str + joined + "\n"
+	colNames := "KodFormularza;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;DomyslnyKodWaluty;KodUrzedu\n"
+	str = str + colNames + joined + "\n"
 
 	WriteToCSV(str, filename)
 }
