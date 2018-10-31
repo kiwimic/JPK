@@ -89,12 +89,12 @@ func (t JPK_WB) CreateCSVFromRowsWyciagWiersz(buforSize int, filename string) {
 		buforSize = 200
 	}
 
-	colNames := "NumerWiersza;DataOperacji;NazwaPodmiotu;OpisOperacji;KwotaOperacji;SaldoOperacji;\n"
+	colNames := "NumerWiersza;DataOperacji;NazwaPodmiotu;OpisOperacji;KwotaOperacji;SaldoOperacji\n"
 	for i := range t.WyciagWiersz {
 		rowPaste := t.createRowWyciagWiersz(i)
 
 		if i == 0 {
-			str = str + colNames + "\n"
+			str = str + colNames
 		}
 
 		str = str + rowPaste
@@ -167,7 +167,7 @@ func (t JPK_WB) CreateCSVNaglowek(filename string) {
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
 	colNames := "KodFormularza;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;DomyslnyKodWaluty;KodUrzedu\n"
-	str = str + colNames + joined + "\n"
+	str = str + colNames + joined
 
 	WriteToCSV(str, filename)
 }
