@@ -2,7 +2,7 @@ package utils
 
 import "strings"
 
-// JPK_VAT cały nosiciel JPK to do niego wkładamy zprasowany plik
+// JPK_WB cały nosiciel JPK to do niego wkładamy zprasowany plik
 type JPK_WB struct {
 	Naglowek      NaglowekWB     `xml:"Naglowek"`
 	NumerRachunku string         `xml:"NumerRachunku"`

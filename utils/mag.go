@@ -566,7 +566,6 @@ func (t JPK_MAG) CreateCSVNaglowek(filename string) {
 		t.Naglowek.KodUrzedu}
 
 	colNames := "KodFormularza;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;DomyslnyKodWaluty;KodUrzedu\n"
-
 	strSlice = RemoveStringFromSliceOfString(strSlice, ";", "", -1)
 	joined := strings.Join(strSlice, ";")
 	str = str + colNames + joined + "\n"
