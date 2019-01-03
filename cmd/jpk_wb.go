@@ -34,11 +34,11 @@ var wbCmd = &cobra.Command{
 		//ExportDir where you save files
 		ExportDir := cmd.Flag("dir").Value.String()
 		fmt.Println("export dir: ", ExportDir)
-		NumerRachunkuName := ExportDir + "\\" + "NumerRachunku.txt"
-		SaldaName := ExportDir + "\\" + "Salda.txt"
-		WyciagCtrlName := ExportDir + "\\" + "WyciagCtrl.txt"
-		WYciagWierszName := ExportDir + "\\" + "WyciagWiersz.txt"
-		NaglowekName := ExportDir + "\\" + "Naglowek.txt"
+		NumerRachunkuName := ExportDir + "\\" + "NumerRachunku.csv"
+		SaldaName := ExportDir + "\\" + "Salda.csv"
+		WyciagCtrlName := ExportDir + "\\" + "WyciagCtrl.csv"
+		WYciagWierszName := ExportDir + "\\" + "WyciagWiersz.csv"
+		NaglowekName := ExportDir + "\\" + "Naglowek.csv"
 
 		xmlFile, err := os.Open(FilePath)
 		// if we os.Open returns an error then handle it
@@ -59,7 +59,7 @@ var wbCmd = &cobra.Command{
 		//str := createCSVFaktura(JPK_FA.Faktura)
 		jpk_wb.CreateCSVFromRowsWyciagWiersz(200, WYciagWierszName)
 		fmt.Println("Stworzono CSV WyciagWiersz: ", time.Now())
-		//exportCSV(csvFaktura, "JPK_FA_Faktura.txt")
+		//exportCSV(csvFaktura, "JPK_FA_Faktura.csv")
 
 		jpk_wb.CreateCSVSalda(SaldaName)
 		fmt.Println("Stworzono CSV Salda: ", time.Now())

@@ -34,11 +34,11 @@ var vatCmd = &cobra.Command{
 		//ExportDir where you save files
 		ExportDir := cmd.Flag("dir").Value.String()
 		fmt.Println("export dir: ", ExportDir)
-		SprzedazWierszName := ExportDir + "\\" + "SprzedazWiersz.txt"
-		ZakupWierszName := ExportDir + "\\" + "ZakupWiersz.txt"
-		SprzedazCtrlName := ExportDir + "\\" + "SprzedazCtrl.txt"
-		ZakupCtrlName := ExportDir + "\\" + "ZakupCtrl.txt"
-		NaglowekName := ExportDir + "\\" + "Naglowek.txt"
+		SprzedazWierszName := ExportDir + "\\" + "SprzedazWiersz.csv"
+		ZakupWierszName := ExportDir + "\\" + "ZakupWiersz.csv"
+		SprzedazCtrlName := ExportDir + "\\" + "SprzedazCtrl.csv"
+		ZakupCtrlName := ExportDir + "\\" + "ZakupCtrl.csv"
+		NaglowekName := ExportDir + "\\" + "Naglowek.csv"
 
 		xmlFile, err := os.Open(FilePath)
 		// if we os.Open returns an error then handle it
@@ -59,7 +59,7 @@ var vatCmd = &cobra.Command{
 		//str := createCSVFaktura(JPK_FA.Faktura)
 		jpk_vat.CreateCSVFromRowsSprzedazWiersz(200, SprzedazWierszName)
 		fmt.Println("Stworzono CSV SprzedazWiersz: ", time.Now())
-		//exportCSV(csvFaktura, "JPK_FA_Faktura.txt")
+		//exportCSV(csvFaktura, "JPK_FA_Faktura.csv")
 
 		fmt.Println("Zapisano CSV SprzedazWiersz: ", time.Now())
 
@@ -72,7 +72,7 @@ var vatCmd = &cobra.Command{
 		test := len(jpk_vat.SprzedazWiersz)
 		fmt.Println("Liczba wierszy sprzedaży to: ", test)
 		fmt.Println("Liczba wierszy zakupu to: ", len(jpk_vat.ZakupWiersz))
-		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.txt")
+		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.csv")
 
 		jpk_vat.CreateCSVSprzedazCtrl(SprzedazCtrlName)
 		jpk_vat.CreateCSVZakupCtrl(ZakupCtrlName)

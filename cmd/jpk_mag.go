@@ -35,22 +35,22 @@ var magCmd = &cobra.Command{
 		ExportDir := cmd.Flag("dir").Value.String()
 		fmt.Println("export dir: ", ExportDir)
 
-		PZWartosc := ExportDir + "\\" + "PZWartosc.txt"
-		WZWartosc := ExportDir + "\\" + "WZWartosc.txt"
-		RWWartosc := ExportDir + "\\" + "RWWartosc.txt"
-		MMWartosc := ExportDir + "\\" + "MMWartosc.txt"
+		PZWartosc := ExportDir + "\\" + "PZWartosc.csv"
+		WZWartosc := ExportDir + "\\" + "WZWartosc.csv"
+		RWWartosc := ExportDir + "\\" + "RWWartosc.csv"
+		MMWartosc := ExportDir + "\\" + "MMWartosc.csv"
 
-		PZWiersz := ExportDir + "\\" + "PZWiersz.txt"
-		WZWiersz := ExportDir + "\\" + "WZWiersz.txt"
-		RWWiersz := ExportDir + "\\" + "RWWiersz.txt"
-		MMWiersz := ExportDir + "\\" + "MMWiersz.txt"
+		PZWiersz := ExportDir + "\\" + "PZWiersz.csv"
+		WZWiersz := ExportDir + "\\" + "WZWiersz.csv"
+		RWWiersz := ExportDir + "\\" + "RWWiersz.csv"
+		MMWiersz := ExportDir + "\\" + "MMWiersz.csv"
 
-		PZCtrlName := ExportDir + "\\" + "PZCtrl.txt"
-		WZCtrlName := ExportDir + "\\" + "WZCtrl.txt"
-		RWCtrlName := ExportDir + "\\" + "RWCtrl.txt"
-		MMCtrlName := ExportDir + "\\" + "MMCtrl.txt"
+		PZCtrlName := ExportDir + "\\" + "PZCtrl.csv"
+		WZCtrlName := ExportDir + "\\" + "WZCtrl.csv"
+		RWCtrlName := ExportDir + "\\" + "RWCtrl.csv"
+		MMCtrlName := ExportDir + "\\" + "MMCtrl.csv"
 
-		NaglowekName := ExportDir + "\\" + "Naglowek.txt"
+		NaglowekName := ExportDir + "\\" + "Naglowek.csv"
 
 		xmlFile, err := os.Open(FilePath)
 		// if we os.Open returns an error then handle it

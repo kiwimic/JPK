@@ -34,11 +34,11 @@ var faCmd = &cobra.Command{
 		//ExportDir where you save files
 		ExportDir := cmd.Flag("dir").Value.String()
 		fmt.Println("export dir: ", ExportDir)
-		fakturaName := ExportDir + "\\" + "Faktura.txt"
-		fakturawierszName := ExportDir + "\\" + "FakturaWiersz.txt"
-		fakturaCtrlName := ExportDir + "\\" + "FakturaCtrl.txt"
-		fakturaWierszCtrlName := ExportDir + "\\" + "FakturaWierszCtrl.txt"
-		NaglowekName := ExportDir + "\\" + "Naglowek.txt"
+		fakturaName := ExportDir + "\\" + "Faktura.csv"
+		fakturawierszName := ExportDir + "\\" + "FakturaWiersz.csv"
+		fakturaCtrlName := ExportDir + "\\" + "FakturaCtrl.csv"
+		fakturaWierszCtrlName := ExportDir + "\\" + "FakturaWierszCtrl.csv"
+		NaglowekName := ExportDir + "\\" + "Naglowek.csv"
 
 		xmlFile, err := os.Open(FilePath)
 		// if we os.Open returns an error then handle it
@@ -59,7 +59,7 @@ var faCmd = &cobra.Command{
 		//str := createCSVFaktura(JPK_FA.Faktura)
 		jpk_fa.CreateCSVFromRowsFaktura(200, fakturaName)
 		fmt.Println("Stworzono CSV faktura: ", time.Now())
-		//exportCSV(csvFaktura, "JPK_FA_Faktura.txt")
+		//exportCSV(csvFaktura, "JPK_FA_Faktura.csv")
 
 		fmt.Println("Zapisano CSV faktura: ", time.Now())
 
@@ -70,7 +70,7 @@ var faCmd = &cobra.Command{
 		test := len(jpk_fa.Faktura)
 		fmt.Println("Liczba faktur to: ", test)
 		fmt.Println("Liczba wierszy faktur to: ", len(jpk_fa.FakturaWiersz))
-		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.txt")
+		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.csv")
 
 		jpk_fa.CreateCSVFakturaCtrl(fakturaCtrlName)
 		jpk_fa.CreateCSVFakturaWierszCtrl(fakturaWierszCtrlName)
