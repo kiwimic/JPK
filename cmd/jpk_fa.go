@@ -72,11 +72,11 @@ var faCmd = &cobra.Command{
 		jpk_fa.CreateCSVFakturaCtrl(fakturaCtrlName)
 		jpk_fa.CreateCSVFakturaWierszCtrl(fakturaWierszCtrlName)
 		jpk_fa.CreateCSVNaglowek(NaglowekName)
-		fmt.Println("File created: facturaCtrl, fakturaWierszCtrl, Naglowek", time.Now())
+		fmt.Println("Files created: facturaCtrl, fakturaWierszCtrl, Naglowek", time.Now())
 
 		end := time.Now()
 		fmt.Println("Start: ", st, "\nEnd: ", end)
-		fmt.Println("Everything lasted: ", time.Since(st))
+		fmt.Println("Everything took: ", time.Since(st))
 
 	},
 }

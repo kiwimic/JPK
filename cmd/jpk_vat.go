@@ -25,7 +25,7 @@ var vatCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		st := time.Now()
-		fmt.Println("Zaczynamy: ", st)
+		fmt.Println("Let's get started: ", st)
 		//FilePath := "C:\\jpk\\xml_duzy.xml"
 		//ExportDir := "C:\\jpk"
 		//FilePath to JPK file
@@ -51,26 +51,24 @@ var vatCmd = &cobra.Command{
 		// read our opened xmlFile as a byte array.
 		byteValue, _ := ioutil.ReadAll(xmlFile)
 		v2 := time.Now()
-		fmt.Println("Wczytano plik: ", v2)
+		fmt.Println("File loaded: ", v2)
 		var jpk_vat utils.JPK_VAT
 		xml.Unmarshal(byteValue, &jpk_vat)
 		v3 := time.Now()
-		fmt.Println("Zakończono parsowanie: ", v3)
+		fmt.Println("Parsing ended: ", v3)
 		//str := createCSVFaktura(JPK_FA.Faktura)
 		jpk_vat.CreateCSVFromRowsSprzedazWiersz(200, SprzedazWierszName)
-		fmt.Println("Stworzono CSV SprzedazWiersz: ", time.Now())
 		//exportCSV(csvFaktura, "JPK_FA_Faktura.csv")
 
-		fmt.Println("Zapisano CSV SprzedazWiersz: ", time.Now())
+		fmt.Println("File created: SprzedazWiersz.csv:", time.Now())
 
 		jpk_vat.CreateCSVFromRowsZakupWiersz(200, ZakupWierszName)
 
-		fmt.Println("Zapisano CSV ZakupWiersz: ", time.Now())
+		fmt.Println("File created: ZakupWiersz.csv: ", time.Now())
 		end := time.Now()
 
-		fmt.Println("Stworzono CSV ZakupWiersz: ", time.Now())
 		test := len(jpk_vat.SprzedazWiersz)
-		fmt.Println("Liczba wierszy sprzedaży to: ", test)
+		fmt.Println("Count of SprzedazWiersz: ", test)
 		fmt.Println("Liczba wierszy zakupu to: ", len(jpk_vat.ZakupWiersz))
 		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.csv")
 
