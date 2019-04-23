@@ -25,7 +25,7 @@ var faCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		st := time.Now()
-		fmt.Println("Zaczynamy: ", st)
+		fmt.Println("Let's get started: ", st)
 		//FilePath := "C:\\jpk\\xml_duzy.xml"
 		//ExportDir := "C:\\jpk"
 		//FilePath to JPK file
@@ -51,7 +51,7 @@ var faCmd = &cobra.Command{
 		// read our opened xmlFile as a byte array.
 		byteValue, _ := ioutil.ReadAll(xmlFile)
 		v2 := time.Now()
-		fmt.Println("File loadeds: ", v2)
+		fmt.Println("File loaded: ", v2)
 		var jpk_fa utils.JPK_FA
 		xml.Unmarshal(byteValue, &jpk_fa)
 		v3 := time.Now()
