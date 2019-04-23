@@ -51,35 +51,32 @@ var faCmd = &cobra.Command{
 		// read our opened xmlFile as a byte array.
 		byteValue, _ := ioutil.ReadAll(xmlFile)
 		v2 := time.Now()
-		fmt.Println("Wczytano plik: ", v2)
+		fmt.Println("File loadeds: ", v2)
 		var jpk_fa utils.JPK_FA
 		xml.Unmarshal(byteValue, &jpk_fa)
 		v3 := time.Now()
-		fmt.Println("Zakończono parsowanie: ", v3)
+		fmt.Println("Parsing ended: ", v3)
 		//str := createCSVFaktura(JPK_FA.Faktura)
 		jpk_fa.CreateCSVFromRowsFaktura(200, fakturaName)
-		fmt.Println("Stworzono CSV faktura: ", time.Now())
+		fmt.Println("File created: faktura.csv: ", time.Now())
 		//exportCSV(csvFaktura, "JPK_FA_Faktura.csv")
-
-		fmt.Println("Zapisano CSV faktura: ", time.Now())
 
 		jpk_fa.CreateCSVFromRowsFakturaWiersz(200, fakturawierszName)
 
-		fmt.Println("Stworzono CSV fakturaWiersz: ", time.Now())
-		fmt.Println("Zapisano CSV fakturaWiersz: ", time.Now())
+		fmt.Println("File created: fakturawiersz.csv", time.Now())
 		test := len(jpk_fa.Faktura)
-		fmt.Println("Liczba faktur to: ", test)
-		fmt.Println("Liczba wierszy faktur to: ", len(jpk_fa.FakturaWiersz))
+		fmt.Println("Count of Faktura: ", test)
+		fmt.Println("Count of FakturaWiersz: ", len(jpk_fa.FakturaWiersz))
 		//exportCSV(csvFakturaWiersz, "JPK_FA_FakturaWiersz.csv")
 
 		jpk_fa.CreateCSVFakturaCtrl(fakturaCtrlName)
 		jpk_fa.CreateCSVFakturaWierszCtrl(fakturaWierszCtrlName)
 		jpk_fa.CreateCSVNaglowek(NaglowekName)
-		fmt.Println("Stworzono sumy kontrolne, oraz nagłowek", time.Now())
+		fmt.Println("File created: facturaCtrl, fakturaWierszCtrl, Naglowek", time.Now())
 
 		end := time.Now()
 		fmt.Println("Start: ", st, "\nEnd: ", end)
-		fmt.Println("Wszystko trwało: ", time.Since(st))
+		fmt.Println("Everything lasted: ", time.Since(st))
 
 	},
 }
